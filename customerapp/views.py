@@ -199,7 +199,8 @@ def viewbooking_view(request):
         record = CustomerDetails.objects.filter(cust_name = custname , phone_no = phoneno ).first()
         if record:
 
-            mile = float(finalodo) - record.first_odo
+            mile = int(finalodo) - int(record.first_odo)
+            
 
             if record.cust_code == 'B':
                 price = round(40.00 * record.days + round((mile / 10), 1) * 0.25, 2)
@@ -208,19 +209,24 @@ def viewbooking_view(request):
                 mile = (mile / 10) / record.days
                 if mile <= 100:
                     price = 60.00 * record.days
+                    mile = int(finalodo) - int(record.first_odo)
                 else:
                     price = round(60.00 * record.days + round((mile / 10), 1) * 0.25, 2)
+                    mile = int(finalodo) - int(record.first_odo)
             elif record.cust_code == 'W':
                 mile = (mile / 10) / record.days
                 if mile <= 900:
                     price = 190.00 * record.days
+                    mile = int(finalodo) - int(record.first_odo)
             elif 900 < mile <= 1500:
                 price = round(190.00 * record.days + 100.00 * record.days, 2)
+                mile = int(finalodo) - int(record.first_odo)
             else:
                 price = round(190.00 * record.days + round((mile / 10), 1) * 0.25 + 200.00 * record.days, 2)
+                mile = int(finalodo) - int(record.first_odo)
             #price = "$"+str(price)
             tax = 18/100*(price)
-            price = tax + price 
+            price = tax + price  
 
             
         
@@ -270,10 +276,6 @@ def viewbooking_view(request):
 
 
 
-
-
-
-
     
     elif request.POST.get('btn2') != None:
         custname = request.POST.get('custname')
@@ -292,16 +294,21 @@ def viewbooking_view(request):
                 mile = (mile / 10) / record.days
                 if mile <= 100:
                     price = 60.00 * record.days
+                    mile = int(finalodo) - int(record.first_odo)
                 else:
                     price = round(60.00 * record.days + round((mile / 10), 1) * 0.25, 2)
+                    mile = int(finalodo) - int(record.first_odo)
             elif record.cust_code == 'W':
                 mile = (mile / 10) / record.days
                 if mile <= 900:
                     price = 190.00 * record.days
+                    mile = int(finalodo) - int(record.first_odo)
             elif 900 < mile <= 1500:
                 price = round(190.00 * record.days + 100.00 * record.days, 2)
+                mile = int(finalodo) - int(record.first_odo)
             else:
                 price = round(190.00 * record.days + round((mile / 10), 1) * 0.25 + 200.00 * record.days, 2)
+                mile = int(finalodo) - int(record.first_odo)
             #price = "$"+str(price)
             tax = 18/100*(price)
             price = tax + price 
@@ -406,8 +413,6 @@ def viewbills_view(request):
     if request.POST.get('btn') != None:
         fromdate = request.POST.get('billdate')
         todate = request.POST.get('billdate2')
-        print("from date..",fromdate)
-        print("To date..",todate)
         billrecord = BillDetails.objects.filter(created_at__gte = fromdate  , created_at__lte = todate )
         if billrecord:
 
