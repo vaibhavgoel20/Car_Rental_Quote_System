@@ -402,7 +402,7 @@ def name_search_view(request):
 
 def viewbills_view(request):
     
-
+    
     if request.POST.get('btn') != None:
         fromdate = request.POST.get('billdate')
         todate = request.POST.get('billdate2')
