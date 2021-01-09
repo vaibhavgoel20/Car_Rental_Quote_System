@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %} 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Bill</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet"/>
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet"/>
+
+
+    {% block extracss %}
+    {% endblock %}
+</head>
+<body>
+
+
+
+        {% block pagecontent %}
+
+
+        
+        <div class="col-md-12 text-dark">
+            <div class="bg-light">
+  
+                    <form method="POST">
+                      {% csrf_token %}
+                      <div class="container border border-danger shadow p-4 mb-4 bg-white rounded-lg">
+                      <div class="form-group container-fluid p-2 my-2 bg-light text-dark text-center border border-danger shadow p-4 mb-4 bg-light rounded-lg">
+                          <h2><b>India's Nationwide Car Rentals</b></h2>
+                          <h2><b>INVOICE BILL</b></h2>
+                      </div>
+                      <div class="form-group container-fluid p-2 my-2 bg-light text-dark border border-danger">
+                        <label for="name"><h5><b>BILL TO </b></h5></label><br>
+                        <label for="name"><h5><b>NAME : {{Customer_Data.cust_name}} </b></h5></label><br>
+                        <label for="number"><h5><b>CONTACT NUMBER : {{Customer_Data.phone_no}}</b></h5></label>
+                      </div><br>
+  
+                      <table class = " container-fluid table table-bordered table-striped" >
+                        <colgroup>
+                          <col style="width: 33%" />
+                          <col style="width: 33%" />
+                          <col style="width: 33%" />
+                        </colgroup>
+                        <tr>
+                            <th>
+                                Customer Code
+                            </th>
+                            <th>
+                                Customer State 
+                            </th>
+                            <th>
+                               Number Of Days 
+                            </th>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                              {{Customer_Data.cust_code}}
+                            </td>
+                            <td>
+                              {{Customer_Data.cust_state}}
+                            </td>
+                            <td>
+                              {{Customer_Data.days}}
+                            </td>
+                        </tr>
+                      
+                      </table><br>
+  
+  
+  
+                      <table class = " container-fluid table table-bordered table-striped" >
+                        <colgroup>
+                          <col style="width: 33%" />
+                          <col style="width: 33%" />
+                          <col style="width: 33%" />
+                        </colgroup>
+                        <tr>
+                            <th>
+                              1st Odometer Reading
+                            </th>
+                            <th>
+                              Final Odometer Reading 
+                            </th>
+                            <th>
+                              Miles Travelled
+                            </th>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                              {{Customer_Data.first_odo}}
+                            </td>
+                            <td>
+                              {{Final_Read}}
+                            </td>
+                            <td>
+                              {{Miles}}
+                            </td>
+                        </tr>
+                      
+                      </table>
+              
+                      <br>
+                      <table class = "container-fluid table table-bordered table-striped" >
+                        <colgroup>
+                          <col style="width: 33%" />
+                          <col style="width: 33%" />
+                          <col style="width: 33%" />
+                        </colgroup>
+                        <tr>
+                            <th>
+                              Tax Rate
+                            </th>
+                            <th>
+                              Total Tax 
+                            </th>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                              18 %
+                            </td>
+                            <td>
+                              ${{Tax_Amount}}
+                            </td>
+                        </tr>
+                      
+                      </table><br>
+  
+                      <center>
+                      <div class="form-group container-fluid p-2 my-2 bg-light text-danger border border-danger shadow p-2 mb-2 bg-light rounded-lg">
+                        <label for="name"><h5><b>TOTAL AMOUNT DUE : $ {{Bill_Amount}} </b></h5></label><br>
+                      </div>
+                     </center>
+                      <br>
+  
+                     
+              
+  
+                      
+                    </div>
+                   </form>
+                
+                </div>
+                <center>
+                <div class="row container">
+                <div class="col-md-6">
+                <div class="container">
+                  <button type="submit" name="btn2"  id="printbtn"  onClick="window.print()" class="btn btn-danger btn-block"><h4>PRINT BILL</h4></button>
+                  </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="container">
+                      <a class="btn btn-info btn-block" name="bckbtn"  id="bckbtn"  href= "../viewbooking" ><h4>BACK</h4></a>
+                      </div>
+                    </div>
+                </div><br>
+
+                
+
+                </div><br>
+           </div>
+        </center>
+
+
+
+
+
+
+        {% endblock %}
+
+      
+
+
+
+
+
+
+
+    
+
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}" text="text/javascript"></script>
+
+{% block extrajs %}
+{% endblock %}
+
+</body>
+</html>

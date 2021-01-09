@@ -1,0 +1,12 @@
+@media print {
+    #printbtn{
+      display: none;
+    }
+  }
+
+
+  @media print {
+    #bckbtn{
+      display: none;
+    }
+  }

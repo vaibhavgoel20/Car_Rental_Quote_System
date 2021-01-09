@@ -1,0 +1,183 @@
+{% extends 'customer/header2.html' %}
+{% load static %}
+
+{% block title %} home page {% endblock %}
+
+{% block extracss %}
+{% endblock %}
+
+
+
+{% block pagecontent %}
+
+
+
+
+<center>
+    <div class="row container-fluid border">
+        <div class="col-md-12 bg-info">
+          <h1><b> VIEW THE BILLS OF CUSTOMERS  </b></h1>
+    
+         </div>
+        </div>
+    </center>
+    <br>
+    
+    
+    
+    
+    <div class="bg-light">
+        
+        <form method="POST">
+            {% csrf_token %}
+          <div class="container border border-danger shadow p-4 mb-4 bg-white rounded-lg">
+          <div class="form-group container-fluid p-2 my-2 bg-dark text-white text-center">
+              <h2>SELECT THE DATE AND VIEW THE BILLS OF CUSTOMERS</h2>
+          </div><br>
+          <div class="form-group container ">
+            <label for="name"><h5><b>FROM MONTH,DATE & YEAR :</b></h5></label>
+            <input type="date" class="form-control" placeholder="Select The Date" id="date" name="billdate">
+          </div>
+          <div class="form-group container ">
+            <label for="name"><h5><b>TO MONTH,DATE & YEAR :</b></h5></label>
+            <input type="date" class="form-control" placeholder="Select The Date" id="date2" name="billdate2">
+          </div>
+          <div class="container">
+          <button type="submit" name="btn" class="btn btn-primary btn-block"><h4>VIEW BILLS </h4></button>
+        </form>
+         </div>
+        </div>
+    
+    <br>
+
+
+
+
+
+
+
+    
+{% if Customer_Bill %}
+<table class = " container-fluid table table-bordered table-striped" >
+  <tr>
+    <th>
+        Date
+    </th>
+      <th>
+          Customer Name
+      </th>
+      <th>
+          Contact Number 
+      </th>
+      <th>
+          Customer Code 
+      </th>
+      <th>
+        Customer State  
+    </th>
+      <th>
+        Number Of Days 
+    </th>
+    <th>
+        1st Odometer Reading 
+    </th>
+    <th>
+        Final  Odometer Reading 
+    </th>
+    <th>
+        Miles Travelled 
+    </th>
+    <th>
+        Tax Rate
+    </th>
+    <th>
+        Total Tax 
+    </th>
+    <th>
+        Total Bill Amount 
+    </th>
+  </tr>
+  {% for rec in Customer_Bill %}
+  <tr>
+      <td>
+          {{rec.created_at}}
+      </td>
+      <td>
+          {{rec.c_name}}
+      </td>
+      <td>
+          {{rec.phn_no}}
+      </td>
+      <td>
+        {{rec.c_code}}
+    </td>
+    <td>
+        {{rec.c_state}}
+    </td>
+    <td>
+        {{rec.no_days}}
+    </td>
+    <td>
+        {{rec.odo_first}}
+    </td>
+    <td>
+        {{rec.odo_final}}
+    </td>
+    <td>
+        {{rec.no_miles}}
+    </td>
+    <td>
+        {{rec.tax_rate}}
+    </td>
+    <td>
+        {{rec.amount_tax}}
+    </td>
+    <td>
+        {{rec.amount_due}}
+    </td>
+  </tr>
+
+{% endfor %}
+
+</table>
+{% endif %}
+
+
+
+
+
+
+    
+{% if Error %}
+<center>
+<div class="container alert alert-danger" role="alert">
+<h1>{{Error}}</h1>
+</div>
+ {% endif %}
+ </center>
+
+
+
+
+
+
+        
+
+
+
+
+{% endblock %}      
+
+
+
+
+
+
+
+
+        {% block extrajs %}
+        
+       
+        {% endblock %}
+        
+    
