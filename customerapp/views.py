@@ -440,5 +440,21 @@ def viewbills_view(request):
 def printbill_view(request):
     
    
+    
+    return render(request, "customer/printbill.html")
 
+
+
+
+
+def testing_view(request):
+    
+   
+    return render(request, "customer/printbill.html")
+
+
+
+def testing_view_two(request):
+    
+   
     return render(request, "customer/printbill.html")
